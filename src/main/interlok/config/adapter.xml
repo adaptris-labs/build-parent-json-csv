@@ -1,0 +1,103 @@
+<adapter>
+  <unique-id>jetty-json-csv</unique-id>
+  <start-up-event-imp>com.adaptris.core.event.StandardAdapterStartUpEvent</start-up-event-imp>
+  <heartbeat-event-imp>com.adaptris.core.HeartbeatEvent</heartbeat-event-imp>
+  <shared-components>
+    <connections/>
+    <services/>
+  </shared-components>
+  <event-handler class="default-event-handler">
+    <unique-id>DefaultEventHandler</unique-id>
+    <connection class="null-connection">
+      <unique-id>agitated-einstein</unique-id>
+    </connection>
+    <producer class="null-message-producer">
+      <unique-id>romantic-bartik</unique-id>
+    </producer>
+  </event-handler>
+  <message-error-handler class="null-processing-exception-handler">
+    <unique-id>silly-dijkstra</unique-id>
+  </message-error-handler>
+  <failed-message-retrier class="no-retries">
+    <unique-id>jolly-ptolemy</unique-id>
+  </failed-message-retrier>
+  <channel-list>
+    <channel>
+      <consume-connection class="jetty-embedded-connection">
+        <unique-id>jetty</unique-id>
+      </consume-connection>
+      <produce-connection class="null-connection">
+        <unique-id>focused-hoover</unique-id>
+      </produce-connection>
+      <workflow-list>
+        <standard-workflow>
+          <consumer class="jetty-message-consumer">
+            <unique-id>csv-receive</unique-id>
+            <destination class="configured-consume-destination">
+              <destination>/api/csv</destination>
+            </destination>
+            <parameter-handler class="jetty-http-ignore-parameters"/>
+            <header-handler class="jetty-http-headers-as-metadata"/>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>high-shirley</unique-id>
+            <services>
+              <json-to-csv>
+                <unique-id>json-array-to-csv</unique-id>
+                <preference-builder class="csv-basic-preference-builder">
+                  <style>STANDARD_PREFERENCE</style>
+                </preference-builder>
+              </json-to-csv>
+              <jetty-response-service>
+                <unique-id>send-response</unique-id>
+                <http-status>200</http-status>
+                <content-type>text/plain</content-type>
+                <response-header-provider class="jetty-no-response-headers"/>
+              </jetty-response-service>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>clever-swanson</unique-id>
+          </producer>
+          <produce-exception-handler class="null-produce-exception-handler"/>
+          <unique-id>receive-json-return-csv</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>receive-json-return-csv-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>receive-json-return-csv-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </standard-workflow>
+      </workflow-list>
+      <message-error-handler class="standard-processing-exception-handler">
+        <unique-id>error-handler</unique-id>
+        <processing-exception-service class="service-list">
+          <unique-id>send-error-response</unique-id>
+          <services>
+            <exception-report-service>
+              <unique-id>generate-exception-msg</unique-id>
+              <exception-serializer class="exception-as-json"/>
+            </exception-report-service>
+            <jetty-response-service>
+              <unique-id>send-500</unique-id>
+              <http-status>500</http-status>
+              <content-type>application/json</content-type>
+              <response-header-provider class="jetty-no-response-headers"/>
+            </jetty-response-service>
+          </services>
+        </processing-exception-service>
+      </message-error-handler>
+      <unique-id>JSON-CSV</unique-id>
+      <auto-start>${jetty.channel.autostart}</auto-start>
+    </channel>
+  </channel-list>
+  <message-error-digester class="standard-message-error-digester">
+    <unique-id>ErrorDigest</unique-id>
+    <digest-max-size>100</digest-max-size>
+  </message-error-digester>
+</adapter>

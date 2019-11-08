@@ -1,0 +1,13 @@
+{
+  "name" : "jetty-json-csv",
+  "variableSets" : {
+    "default" : { },
+    "local-dev" : { }
+  },
+  "variableXpaths" : {
+    "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/auto-start" : "${jetty.channel.autostart}"
+  },
+  "uidInXincludeCompntListFileName" : false,
+  "xincludeXpaths" : { },
+  "structured" : true
+}

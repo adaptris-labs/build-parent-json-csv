@@ -1,0 +1,28 @@
+ext {
+  interlokParentGradle = "https://raw.githubusercontent.com/adaptris-labs/interlok-build-parent/master/parent.gradle"
+  interlokVersion = '3.9.2-RELEASE'
+  interlokUiVersion = interlokVersion
+}
+
+configurations {
+    interlokRuntime{}
+    interlokTestRuntime{}
+    interlokJavadocs{}
+}
+
+dependencies {
+  interlokRuntime ("com.adaptris:interlok-json:$interlokVersion") { changing=true }
+  interlokRuntime ("com.adaptris:interlok-csv:$interlokVersion") { changing=true }
+  interlokRuntime ("com.adaptris:interlok-csv-json:$interlokVersion") { changing=true }
+  interlokRuntime ("com.adaptris:interlok-apache-http:$interlokVersion") { changing=true }
+
+  interlokJavadocs group: "com.adaptris", name: "interlok-apache-http", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
+  interlokJavadocs group: "com.adaptris", name: "interlok-json", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
+  interlokJavadocs group: "com.adaptris", name: "interlok-csv", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
+  interlokJavadocs group: "com.adaptris", name: "interlok-csv-json", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
+
+}
+
+allprojects {
+  apply from: "${interlokParentGradle}"
+}
