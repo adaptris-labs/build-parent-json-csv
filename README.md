@@ -16,7 +16,7 @@ Sadly there are no tests; that's left as an exercise for you.
 
 * `./gradlew clean build`
 * `(cd ./build/distribution && java -jar lib/interlok-boot.jar)`
-* Login to the UI as usual; note that the adapter is _started_ but the channel is _stopped_
+* Login to the UI as usual via (http://localhost:8080/interlok); note that the adapter is _started_ but the channel is _stopped_
 * Kill everything
 
 * `./gradlew -PbuildEnv=dev clean build`
