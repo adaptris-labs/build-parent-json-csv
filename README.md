@@ -23,5 +23,5 @@ Sadly there are no tests; that's left as an exercise for you.
 * `cd ./build/distribution && java -jar lib/interlok-boot.jar`
 * Login to the UI as usual; the channel is now _started_
 
-By specifying a build environment, you are effectively copying `variables-local-dev.properties` to `variables-local.properties` in your output directory; this means that the channel is now marked as `autostart=true`; Also, with the buildEnvironment set to be true, you can use the service tester page in the UI, since the service tester jar files are now included as part of the distribution.
+By specifying a build environment, you are effectively copying `variables-local-dev.properties` to `variables-local.properties` in your output directory; this means that the channel is now marked as `autostart=true`; Also, with the buildEnvironment set to be _dev_, you can use the service tester page in the UI, since the service tester jar files are now included as part of the distribution.
 
