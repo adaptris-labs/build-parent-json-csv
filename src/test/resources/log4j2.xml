@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" monitorInterval="60" shutdownHook="disable">
+  <Appenders>
+
+    <Console name="Console" target="SYSTEM_OUT">
+      <PatternLayout>
+        <Pattern>%m%n</Pattern>
+      </PatternLayout>
+    </Console>
+
+  </Appenders>
+  <Loggers>
+
+    <Logger name="org" level="WARN"/>
+    <Logger name="io" level="WARN"/>
+    <Logger name="com" level="WARN"/>
+    <Logger name="net" level="WARN"/>
+    <Logger name="jndi" level="WARN"/>
+    <Logger name="java.sql.DatabaseMetadata" level="WARN"/>
+    <Logger name="org.eclipse.jetty" level="WARN"/>
+    <Logger name="org.hibernate.cache" level="WARN"/>
+    <Logger name="org.springframework.aop.framework.CglibAopProxy" level="ERROR"/>
+    <Logger name="org.hibernate.cache.EhCacheProvider" level="ERROR"/>
+    <Logger name="com.mchange.v2.resourcepool.BasicResourcePool" level="ERROR"/>
+    <Logger name="com.sun.jersey" level="ERROR"/>
+    <Logger name="com.adaptris" level="OFF"/>
+    <Logger name="com.adaptris.adaptergui.util.ObjectConverter" level="OFF"/>
+    <Logger name="com.adaptris.adaptergui.util.ClassUtils" level="OFF"/>
+    <Logger name="com.adaptris.tester.runtime.Test" level="INFO" />
+
+    <Root level="WARN">
+      <AppenderRef ref="Console"/>
+    </Root>
+  </Loggers>
+</Configuration>
