@@ -1,6 +1,6 @@
 # build-parent-json-csv
 
-[![Actions Status](https://github.com/adaptris-labs/build-parent-json-csv/workflows/assemble/badge.svg)
+[![Actions Status](https://github.com/adaptris-labs/build-parent-json-csv/assemble/badge.svg)](https://github.com/adaptris-labs/build-parent-json-csv/actions)
 
 The suggested name was supreme-giggle
 
