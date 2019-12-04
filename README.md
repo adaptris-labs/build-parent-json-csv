@@ -1,5 +1,7 @@
 # build-parent-json-csv
 
+[![Actions Status](https://github.com/adaptris-labs/build-parent-json-csv/workflows/assemble/badge.svg)
+
 The suggested name was supreme-giggle
 
 This showcases using [interlok-build-parent](https://github.com/adaptris-labs/interlok-build-parent); with an actual real world deploy-able example for you.
