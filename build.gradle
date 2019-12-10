@@ -1,6 +1,6 @@
 ext {
-  interlokParentGradle = "https://raw.githubusercontent.com/adaptris-labs/interlok-build-parent/master/parent.gradle"
-  interlokVersion = '3.9.2-RELEASE'
+  interlokParentGradle = "https://raw.githubusercontent.com/adaptris-labs/interlok-build-parent/master/build.gradle"
+  interlokVersion = '3.9-SNAPSHOT'
   // Include the WAR file since by default it is excluded.
   includeWar='true'
 }
