@@ -5,11 +5,10 @@ ext {
   includeWar='true'
 }
 
-configurations {
-    interlokRuntime{}
-    interlokTestRuntime{}
-    interlokJavadocs{}
+allprojects {
+  apply from: "${interlokParentGradle}"
 }
+
 
 dependencies {
   interlokRuntime ("com.adaptris:interlok-json:$interlokVersion") { changing=true }
@@ -24,6 +23,3 @@ dependencies {
 
 }
 
-allprojects {
-  apply from: "${interlokParentGradle}"
-}
