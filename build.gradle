@@ -1,12 +1,19 @@
+plugins {
+  // https://github.com/nemerosa/versioning
+  id 'net.nemerosa.versioning' version '2.8.2'
+}
+
 ext {
   interlokParentGradle = "https://raw.githubusercontent.com/adaptris-labs/interlok-build-parent/master/build.gradle"
-  interlokVersion = '3.9-SNAPSHOT'
+  interlokVersion = '3.10-SNAPSHOT'
   // Include the WAR file since by default it is excluded.
   includeWar='true'
 }
 
 allprojects {
   apply from: "${interlokParentGradle}"
+  // specify the version of the configuration.
+  version=versioning.info.branch
 }
 
 
