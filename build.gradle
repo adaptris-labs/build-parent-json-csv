@@ -13,7 +13,7 @@ ext {
 allprojects {
   apply from: "${interlokParentGradle}"
   // specify the version of the configuration.
-  version=versioning.info.branch
+  version=versioning.info.full
 }
 
 
