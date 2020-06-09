@@ -42,6 +42,17 @@
           <service-collection class="service-list">
             <unique-id>high-shirley</unique-id>
             <services>
+              <add-metadata-service>
+                <unique-id>add-build-metadata</unique-id>
+                <metadata-element>
+                  <key>X-Interlok-Release</key>
+                  <value>${interlok.core.version}</value>
+                </metadata-element>
+                <metadata-element>
+                  <key>X-Interlok-Build</key>
+                  <value>${build.version}</value>
+                </metadata-element>
+              </add-metadata-service>
               <json-to-csv>
                 <unique-id>json-array-to-csv</unique-id>
                 <preference-builder class="csv-basic-preference-builder">
@@ -52,7 +63,11 @@
                 <unique-id>send-response</unique-id>
                 <http-status>200</http-status>
                 <content-type>text/plain</content-type>
-                <response-header-provider class="jetty-no-response-headers"/>
+                <response-header-provider class="jetty-metadata-response-headers">
+                  <filter class="regex-metadata-filter">
+                    <include-pattern>^X-Interlok.*$</include-pattern>
+                  </filter>
+                </response-header-provider>
               </jetty-response-service>
             </services>
           </service-collection>
