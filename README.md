@@ -28,3 +28,28 @@ This showcases using [interlok-build-parent](https://github.com/adaptris-labs/in
 
 By specifying a build environment, you are effectively copying `variables-local-dev.properties` to `variables-local.properties` in your output directory; this means that the channel is now marked as `autostart=true`; Also, with the buildEnvironment set to be _dev_, you can use the service tester page in the UI, since the service tester jar files are now included as part of the distribution.
 
+## Docker
+
+You can of course choose your own tag name.
+
+```
+docker build --tag "zzlc:json-csv" .
+docker run -it --rm -p8080:8080 zzlc:json-csv
+```
+
+Then in a separate window you can do
+```
+$ curl -si -XPOST -d'[{"column1": "line1"}, {"column1": "line2"}]' http://localhost:8080/api/csv
+HTTP/1.1 200 OK
+X-Interlok-Build:
+X-Interlok-Release: 3.11.1-RELEASE
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Server: Jetty(9.4.34.v20201102)
+
+column1
+line1
+line2
+```
+
+Note that the `X-Interlok-Build` header is blank probably because there is no git information so the versioning is blank.
