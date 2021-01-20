@@ -9,6 +9,8 @@ This showcases using [interlok-build-parent](https://github.com/adaptris-labs/in
 # What it does
 
 * jetty workflow that accepts a JSON Array, and returns you back CSV
+  - If the channel is started then `curl -si -XPOST -d'[{"column1": "line1"}, {"column1": "line2"}]' http://localhost:8080/api/csv` will give you some data
+
 * there is a service-test.xml which tests the json-array-csv service
 * there is limited error handling such that if you give it a non-json-array; it gives you a json stacktrace.
 
