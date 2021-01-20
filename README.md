@@ -33,9 +33,19 @@ By specifying a build environment, you are effectively copying `variables-local-
 You can of course choose your own tag name.
 
 ```
-docker build --tag "zzlc:json-csv" .
-docker run -it --rm -p8080:8080 zzlc:json-csv
+docker build --tag "zzlc/json-csv" .
+docker run -it --rm -p8080:8080 zzlc/json-csv
 ```
+
+or...
+
+```
+./gradlew -PbuildEnv=dev build
+docker build -f Dockerfile.alt --tag "zzlc/json-csv" .
+docker run -it --rm -p8080:8080 zzlc/json-csv
+```
+
+The first way makes docker run everything; the second way just copies things into the right place.
 
 Then in a separate window you can do
 ```
@@ -52,4 +62,4 @@ line1
 line2
 ```
 
-Note that the `X-Interlok-Build` header is blank probably because there is no git information so the versioning is blank.
+Note that the `X-Interlok-Build` header is blank probably because there is no git information so the versioning is blank. This will largely depend on how you're building the docker image.

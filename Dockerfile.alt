@@ -1,0 +1,5 @@
+FROM adaptris/interlok-base:latest-zulu
+
+COPY build/distribution /opt/interlok
+
+EXPOSE 5555 8080
