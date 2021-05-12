@@ -27,7 +27,6 @@
         </input-message-provider>
         <assertions>
           <assert-line-payload-equals>
-            <unique-id>drunk-khorana</unique-id>
             <line>key1,key2</line>
             <line>v1,v2</line>
             <line>av1,av2</line>

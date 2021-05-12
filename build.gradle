@@ -5,7 +5,7 @@ plugins {
 
 ext {
   interlokParentGradle = "https://raw.githubusercontent.com/adaptris-labs/interlok-build-parent/master/build.gradle"
-  interlokVersion = '3.12.0-RELEASE'
+  interlokVersion = '4.0.0-RELEASE'
   // Include the WAR file since by default it is excluded.
   includeWar='true'
 }
@@ -29,4 +29,3 @@ dependencies {
   interlokJavadocs group: "com.adaptris", name: "interlok-csv-json", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
 
 }
-
