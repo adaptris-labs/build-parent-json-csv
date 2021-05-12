@@ -33,9 +33,7 @@
         <standard-workflow>
           <consumer class="jetty-message-consumer">
             <unique-id>csv-receive</unique-id>
-            <destination class="configured-consume-destination">
-              <destination>/api/csv</destination>
-            </destination>
+            <path>/api/csv</path>
             <parameter-handler class="jetty-http-ignore-parameters"/>
             <header-handler class="jetty-http-headers-as-metadata"/>
           </consumer>
