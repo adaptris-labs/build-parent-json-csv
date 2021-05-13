@@ -4,8 +4,7 @@ plugins {
 }
 
 ext {
-  interlokParentGradle = "https://raw.githubusercontent.com/adaptris-labs/interlok-build-parent/master/build.gradle"
-  interlokVersion = '4.0.0-RELEASE'
+  interlokParentGradle = "https://raw.githubusercontent.com/adaptris/interlok-build-parent/main/v4/build.gradle"
   // Include the WAR file since by default it is excluded.
   includeWar='true'
 }
