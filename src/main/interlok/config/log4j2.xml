@@ -17,18 +17,6 @@
       </filters>
     </JmxLogAppender>
 
-    <RollingFile name="RollingFile" fileName="logs/adapter.log" filePattern="logs/adapter.log.%i">
-      <PatternLayout>
-        <Pattern>%d{ISO8601} %-5p [%t] [%c] %m%n</Pattern>
-      </PatternLayout>
-      <Policies>
-        <OnStartupTriggeringPolicy />
-        <!-- <TimeBasedTriggeringPolicy /> -->
-        <SizeBasedTriggeringPolicy size="10 MB"/>
-      </Policies>
-      <!-- fileIndex == min means that .1 is always the "newest" of the rolled-over files -->
-      <DefaultRolloverStrategy max="9" fileIndex="min"/>
-    </RollingFile>
   </Appenders>
   <Loggers>
 
@@ -73,7 +61,6 @@
     <Root level="TRACE">
       <AppenderRef ref="Console"/>
       <AppenderRef ref="JmxLogAppender"/>
-      <AppenderRef ref="RollingFile"/>
     </Root>
   </Loggers>
 </Configuration>
