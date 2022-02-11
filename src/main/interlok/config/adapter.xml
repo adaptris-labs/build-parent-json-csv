@@ -30,7 +30,7 @@
         <unique-id>focused-hoover</unique-id>
       </produce-connection>
       <workflow-list>
-        <standard-workflow>
+        <thread-context-workflow>
           <consumer class="jetty-message-consumer">
             <unique-id>csv-receive</unique-id>
             <path>/api/csv</path>
@@ -70,9 +70,10 @@
             </services>
           </service-collection>
           <producer class="null-message-producer">
-            <unique-id>clever-swanson</unique-id>
+            <unique-id>tender-spence</unique-id>
           </producer>
-          <produce-exception-handler class="null-produce-exception-handler"/>
+          <disable-default-message-count>true</disable-default-message-count>
+          <send-events>false</send-events>
           <unique-id>receive-json-return-csv</unique-id>
           <message-metrics-interceptor>
             <unique-id>receive-json-return-csv-MessageMetrics</unique-id>
@@ -85,7 +86,65 @@
           <in-flight-workflow-interceptor>
             <unique-id>receive-json-return-csv-InFlight</unique-id>
           </in-flight-workflow-interceptor>
-        </standard-workflow>
+        </thread-context-workflow>
+        <thread-context-workflow>
+          <consumer class="jetty-message-consumer">
+            <unique-id>receive-csv</unique-id>
+            <path>/api/csv-json</path>
+            <parameter-handler class="jetty-http-ignore-parameters"/>
+            <header-handler class="jetty-http-headers-as-metadata"/>
+          </consumer>
+          <service-collection class="service-list">
+            <unique-id>high-shirley</unique-id>
+            <services>
+              <add-metadata-service>
+                <unique-id>add-build-metadata</unique-id>
+                <metadata-element>
+                  <key>X-Interlok-Release</key>
+                  <value>${interlok.core.version}</value>
+                </metadata-element>
+                <metadata-element>
+                  <key>X-Interlok-Build</key>
+                  <value>${build.version}</value>
+                </metadata-element>
+              </add-metadata-service>
+              <csv-to-json>
+                <unique-id>csv-to-json-array</unique-id>
+                <preference-builder class="csv-basic-preference-builder">
+                  <style>STANDARD_PREFERENCE</style>
+                </preference-builder>
+                <style>JSON_ARRAY</style>
+              </csv-to-json>
+              <jetty-response-service>
+                <unique-id>send-response</unique-id>
+                <http-status>200</http-status>
+                <content-type>text/plain</content-type>
+                <response-header-provider class="jetty-metadata-response-headers">
+                  <filter class="regex-metadata-filter">
+                    <include-pattern>^X-Interlok.*$</include-pattern>
+                  </filter>
+                </response-header-provider>
+              </jetty-response-service>
+            </services>
+          </service-collection>
+          <producer class="null-message-producer">
+            <unique-id>clever-swanson</unique-id>
+          </producer>
+          <disable-default-message-count>true</disable-default-message-count>
+          <send-events>false</send-events>
+          <unique-id>receive-csv-return-json</unique-id>
+          <message-metrics-interceptor>
+            <unique-id>receive-json-return-csv-MessageMetrics</unique-id>
+            <timeslice-duration>
+              <unit>MINUTES</unit>
+              <interval>5</interval>
+            </timeslice-duration>
+            <timeslice-history-count>12</timeslice-history-count>
+          </message-metrics-interceptor>
+          <in-flight-workflow-interceptor>
+            <unique-id>receive-json-return-csv-InFlight</unique-id>
+          </in-flight-workflow-interceptor>
+        </thread-context-workflow>
       </workflow-list>
       <message-error-handler class="standard-processing-exception-handler">
         <unique-id>error-handler</unique-id>

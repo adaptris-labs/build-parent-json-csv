@@ -21,6 +21,7 @@ dependencies {
   interlokRuntime ("com.adaptris:interlok-csv:$interlokVersion") { changing=true }
   interlokRuntime ("com.adaptris:interlok-csv-json:$interlokVersion") { changing=true }
   interlokRuntime ("com.adaptris:interlok-apache-http:$interlokVersion") { changing=true }
+  interlokTestRuntime ("com.adaptris:interlok-service-tester-json:$interlokVersion") { changing= true}
 
   interlokJavadocs group: "com.adaptris", name: "interlok-apache-http", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false
   interlokJavadocs group: "com.adaptris", name: "interlok-json", version: "$interlokVersion", classifier: "javadoc", changing: true, transitive: false

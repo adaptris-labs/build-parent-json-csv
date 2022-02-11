@@ -9,6 +9,9 @@
       <services/>
     </shared-components-provider>
   </test-client>
+  <source class="default-config-file-source">
+    <file>file:///${service.tester.working.directory}/src/main/interlok/config/adapter.xml</file>
+  </source>
   <helpers/>
   <test-list>
     <unique-id>jetty-json-csv</unique-id>
@@ -47,14 +50,51 @@
         </expected-exception>
       </test-case>
       <service-to-test>
-        <source class="file-source">
+        <source class="default-config-file-source">
           <file>file:///${service.tester.working.directory}/src/main/interlok/config/adapter.xml</file>
         </source>
         <preprocessors>
-          <xpath-preprocessor>
-            <xpath><![CDATA[/adapter/channel-list/channel[unique-id="JSON-CSV"]/workflow-list/standard-workflow[unique-id="receive-json-return-csv"]/service-collection/services/json-to-csv[unique-id="json-array-to-csv"]]]></xpath>
-            <namespace-context/>
-          </xpath-preprocessor>
+          <service-unique-id-preprocessor>
+            <channel>JSON-CSV</channel>
+            <workflow>receive-json-return-csv</workflow>
+            <service>json-array-to-csv</service>
+          </service-unique-id-preprocessor>
+        </preprocessors>
+      </service-to-test>
+    </test>
+    <test>
+      <unique-id>csv-to-json-array</unique-id>
+      <test-case>
+        <unique-id>csvInput</unique-id>
+        <input-message-provider>
+          <metadata-provider class="empty-metadata-provider"/>
+          <payload-provider class="inline-payload-provider">
+            <payload><![CDATA[column1,column2
+line1-value1,line1-value2
+line2-value1,line2-value2]]></payload>
+          </payload-provider>
+        </input-message-provider>
+        <assertions>
+          <assert-jsonpath-equals>
+            <json-path>$[0].column1</json-path>
+            <value>line1-value1</value>
+          </assert-jsonpath-equals>
+          <assert-jsonpath-equals>
+            <json-path>$[1].column2</json-path>
+            <value>line2-value2</value>
+          </assert-jsonpath-equals>
+        </assertions>
+      </test-case>
+      <service-to-test>
+        <source class="default-config-file-source">
+          <file>file:///${service.tester.working.directory}/src/main/interlok/config/adapter.xml</file>
+        </source>
+        <preprocessors>
+          <service-unique-id-preprocessor>
+            <channel>JSON-CSV</channel>
+            <workflow>receive-csv-return-json</workflow>
+            <service>csv-to-json-array</service>
+          </service-unique-id-preprocessor>
         </preprocessors>
       </service-to-test>
     </test>

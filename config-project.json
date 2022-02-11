@@ -6,16 +6,17 @@
   },
   "variableXpaths" : {
     "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/auto-start" : "${jetty.channel.autostart}",
-    "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/workflow-list/standard-workflow[unique-id=\"receive-json-return-csv\"]/service-collection/services/add-metadata-service[unique-id=\"add-build-metadata\"]/metadata-element[2]/value" : "${build.version}",
-    "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/workflow-list/standard-workflow[unique-id=\"receive-json-return-csv\"]/service-collection/services/add-metadata-service[unique-id=\"add-build-metadata\"]/metadata-element[1]/value" : "${interlok.core.version}"
+    "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/workflow-list/thread-context-workflow[unique-id=\"receive-csv-return-json\"]/service-collection/services/add-metadata-service[unique-id=\"add-build-metadata\"]/metadata-element[2]/value" : "${build.version}",
+    "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/workflow-list/thread-context-workflow[unique-id=\"receive-json-return-csv\"]/service-collection/services/add-metadata-service[unique-id=\"add-build-metadata\"]/metadata-element[2]/value" : "${build.version}",
+    "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/workflow-list/thread-context-workflow[unique-id=\"receive-csv-return-json\"]/service-collection/services/add-metadata-service[unique-id=\"add-build-metadata\"]/metadata-element[1]/value" : "${interlok.core.version}",
+    "/adapter/channel-list/channel[unique-id=\"JSON-CSV\"]/workflow-list/thread-context-workflow[unique-id=\"receive-json-return-csv\"]/service-collection/services/add-metadata-service[unique-id=\"add-build-metadata\"]/metadata-element[1]/value" : "${interlok.core.version}"
   },
   "uidInXincludeCompntListFileName" : false,
   "xincludeXpaths" : { },
   "additionalFiles" : {
-    "jetty.xml" : "jetty.xml",
-    "webdefault.xml" : "webdefault.xml",
     "bootstrap.properties" : "bootstrap.properties",
     "log4j2.xml" : "log4j2.xml"
   },
+  "optionalComponentsInUse" : [ "com.adaptris:interlok-csv-json:4.3.0-RELEASE", "com.adaptris:interlok-csv:4.3.0-RELEASE", "com.adaptris:interlok-json:4.3.0-RELEASE" ],
   "structured" : true
 }
