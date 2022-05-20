@@ -221,7 +221,7 @@
                   -->
                 </New>
               </Set>
-              <Set name="tempDir">./fs/temp-files</Set>
+              <Set name="tempDir">/tmp</Set>
             </New>
           </Arg>
         </Call>
