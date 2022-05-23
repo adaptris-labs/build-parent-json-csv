@@ -221,7 +221,6 @@
                   -->
                 </New>
               </Set>
-              <Set name="tempDir">/tmp</Set>
             </New>
           </Arg>
         </Call>
